@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Codice | FISEI Engineering</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/scrollreveal"></script>
+</head>
+
+<body>
+    <canvas id="particleCanvas"></canvas>
+
+    <header>
+        <div class="header-content">
+            <h1 class="glitch" data-text="Nova Codice">Nova Codice</h1>
+            <p class="subtitle">Si lo puedes imaginar lo puedes programar.</p>
+        </div>
+    </header>
+
+    <main>
+        <section id="team" class="section">
+            <h2 class="section-title">NUESTRO ESCUADRÓN</h2>
+            <div class="carousel-container">
+                <button class="nav-btn prev-btn" id="prevBtn">&lt;</button>
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="card">
+                        <div class="card-border"></div>
+                        <div class="card-content">
+                            <div class="member-avatar">
+                                <img src="integrantes/carpeta_alen/Imagen1.png" alt="Alen">
+                            </div>
+                            <h3>Alen</h3>
+                            <p class="role">Lider del grupo</p>
+                            <p>Futuro Ingeniero en Software y especialista en Ciberseguridad.</p>
+                            <a href="integrantes/carpeta_alen/allen.html" class="btn-member" target="_blank"
+                                rel="noopener noreferrer">Ver Perfil</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-border"></div>
+                        <div class="card-content">
+                            <div class="member-avatar">
+                                <img src="integrantes/carpeta_gaby/gaby.jpeg" alt="Gaby">
+                            </div>
+                            <h3>Gaby </h3>
+                            <p class="role">Encargada de Diseño</p>
+                            <p>Futura Ingeniera en Software y especialista en Inteligencia artificial y Maching
+                                Learning, Ciencias de Datos.</p>
+                            <a href="integrantes/carpeta_gaby/gaby.html" class="btn-member" target="_blank"
+                                rel="noopener noreferrer">Ver Perfil</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-border"></div>
+                        <div class="card-content">
+                            <div class="member-avatar">
+                                <img src="integrantes/carpeta_tomas/tomas.jpeg" alt="Thomas">
+                            </div>
+                            <h3>Thomas</h3>
+                            <p class="role">Programador principal</p>
+                            <p>Mi verdadera ventaja competitiva está en la IA: soy un entusiasta de la Inteligencia
+                                Artificial y promps. Me encanta integrar herramientas generativas en mi flujo de
+                                trabajo
+                            </p>
+                            <a href="integrantes/carpeta_tomas/index.html" class="btn-member" target="_blank"
+                                rel="noopener noreferrer">Ver Perfil</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-border"></div>
+                        <div class="card-content">
+                            <div class="member-avatar">
+                                <img src="integrantes/carpeta_david/david.jpeg" alt="Nova AI">
+                            </div>
+                            <h3>David</h3>
+                            <p class="role">Desarrollador de juegos</p>
+                            <p>Concebir la especialización de Ciberseguridad aplicándolo a sistemas propios y laborales,
+                                con el fin de mejorar su robustez.</p>
+                            <a href="integrantes/carpeta_david/index.html" class="btn-member" target="_blank"
+                                rel="noopener noreferrer">Ver Perfil</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-border"></div>
+                        <div class="card-content">
+                            <div class="member-avatar">
+                                <img src="integrantes/carpeta_juan/juan.jpeg" alt="Nova AI">
+                            </div>
+                            <h3>Juan</h3>
+                            <p class="role">Desarrollador de juegos</p>
+                            <p>Futuro Desarrollo de Software
+                                Enfocar en crear aplicaciones y sistemas.
+                                Desarrollo Web (frontend y backend)
+                                Desarrollo Móvil (Android, iOS)
+                                Desarrollo Desktop</p>
+                            <a href="integrantes/carpeta_juan/indexs.html" class="btn-member" target="_blank"
+                                rel="noopener noreferrer">Ver Perfil</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-border"></div>
+                        <div class="card-content">
+                            <div class="member-avatar">
+                                <img src="integrantes/carpeta_sebas/Sebas.png" alt="Freddy">
+                            </div>
+                            <h3>Freddy</h3>
+                            <p class="role">Desarrollador de juegos</p>
+                            <p>Me gusta meter mano al código, probar, romper y arreglar hasta que funcione</p>
+                            <a href="integrantes/carpeta_sebas/index.html" class="btn-member" target="_blank" rel="noopener noreferrer">Ver Perfil</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-border"></div>
+                        <div class="card-content">
+                            <div class="member-avatar">
+                                <img src="img/avatar3.png" alt="Echo">
+                            </div>
+                            <h3>Echo</h3>
+                            <p class="role">Coordinador</p>
+                            <p>Diseño de redes neuronales y protocolos de comunicación.</p>
+                            <a href="#" class="btn-member" target="_blank" rel="noopener noreferrer">Ver Perfil</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="nav-btn next-btn" id="nextBtn">&gt;</button>
+            </div>
+        </section>
+
+        <section id="doom-zone" class="section">
+            <h2 class="section-title">DOOM 1993 - ZONA DE JUEGO</h2>
+            <div class="doom-container">
+                <iframe src="https://js-dos.com/games/doom.exe.html" width="100%" height="500" frameborder="0"
+                    allow="autoplay; gamepad" allowfullscreen></iframe>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

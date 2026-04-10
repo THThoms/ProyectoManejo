@@ -1,0 +1,177 @@
+:root {
+    --primary: #ff0033;
+    --accent: #ff4d00;
+    --bg-dark: #0a0a0a;
+    --card-bg: #1a1a1a;
+    --text-light: #e0e0e0;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: 'Rajdhani', sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+#particleCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.glitch {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 3rem;
+    text-align: center;
+    text-shadow: 3px 3px var(--accent);
+}
+
+.subtitle {
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8rem;
+    margin: 1.5rem auto;
+    max-width: 800px;
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+.section-title {
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    color: var(--primary);
+    margin: 5rem 0 3rem;
+    font-size: 1.3rem;
+}
+
+.carousel-container {
+    position: relative;
+    padding: 0 60px;
+    display: flex;
+    align-items: center;
+}
+
+.carousel-track {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    /* Permite el scroll para JS */
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    /* Firefox */
+    padding: 2rem 0;
+}
+
+.carousel-track::-webkit-scrollbar {
+    display: none;
+}
+
+/* Chrome */
+
+.card {
+    flex: 0 0 320px;
+    background: var(--card-bg);
+    position: relative;
+    border-radius: 8px;
+    padding: 2px;
+    overflow: hidden;
+}
+
+.card-content {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 6px;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.member-avatar {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    border: 2px solid var(--primary);
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(255, 0, 51, 0.3);
+}
+
+.member-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(20%) contrast(1.1);
+}
+
+.role {
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.card-border {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(var(--primary), var(--accent), transparent 60%);
+    top: -50%;
+    left: -50%;
+    animation: rotate 4s linear infinite;
+    z-index: 1;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(26, 26, 26, 0.9);
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    font-family: 'Press Start 2P';
+}
+
+.nav-btn:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.prev-btn {
+    left: 5px;
+}
+
+.next-btn {
+    right: 5px;
+}
+
+#doom-zone {
+    margin-top: 8rem;
+    padding-bottom: 5rem;
+}
+
+.btn-member {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    text-decoration: none;
+}
