@@ -131,6 +131,7 @@ function iniciarJuego(index = 0) {
   ultimaConfiguracion = valores.slice();
   // mostrar la sección del juego principal
   mostrarSeccion('juego');
+  audio.startMusic();
 }
 
 function crearTablero(size) {
@@ -161,7 +162,9 @@ function crearTablero(size) {
         <div class="back">${val}</div>
       </div>
     `;
-    card.addEventListener("click", () => voltearCarta(card, val));
+    card.addEventListener("click", () => {
+      voltearCarta(card, val);
+    });
     tablero.appendChild(card);
   });
   // devolver la configuración de valores colocados en el tablero
@@ -289,6 +292,7 @@ function voltearCarta(card, simbolo) {
 
 function verificarPareja() {
   if (primeraCarta.simbolo === segundaCarta.simbolo) {
+    audio.play('acierto');
     parejasEncontradas++;
     resetTurno();
 
@@ -299,6 +303,7 @@ function verificarPareja() {
       setTimeout(() => mostrarGameOver('¡Te quedaste sin movimientos!'), 500);
     }
   } else {
+    audio.play('error');
     bloqueado = true;
     setTimeout(() => {
       primeraCarta.card.classList.remove("flip");
@@ -316,6 +321,8 @@ function resetTurno() {
 }
 
 function mostrarVictoria() {
+  audio.play('acierto');
+  lanzarConfeti();
   const tieneProximoNivel = nivelActual < maxLevelsPerSize - 1;
   const box = document.createElement('div');
   box.className = 'message-box';
@@ -327,7 +334,7 @@ function mostrarVictoria() {
   } else {
     // Título "Otro juego"
     const tituloOtroJuego = document.createElement('div');
-    tituloOtroJuego.textContent = 'Otro juego';
+    tituloOtroJuego.textContent = 'Siguiente juego';
     tituloOtroJuego.style.fontSize = '24px';
     tituloOtroJuego.style.fontWeight = 'bold';
     box.appendChild(tituloOtroJuego);
@@ -509,6 +516,7 @@ function irAlJuegoFrutasArrastre() {
         }
       }, () => {
         // juego terminado por error
+        audio.play('error');
         mostrarGameOver('Colocación incorrecta. Fin del juego.');
       });
     }
@@ -630,6 +638,7 @@ function habilitarInteractividad(previewContainer, previewVals, size, onComplete
         const isCorrect = data === val;
 
         if (isCorrect) {
+          audio.play('acierto');
           // colocación correcta - se pone verde
           cell.classList.add('correct');
           cell.classList.add('filled');
@@ -643,6 +652,7 @@ function habilitarInteractividad(previewContainer, previewVals, size, onComplete
           // comprobar si terminó
           const filled = targets.querySelectorAll('.filled').length;
           if (filled === previewVals.filter(v => v !== null).length) {
+            lanzarConfeti();
             if (typeof onComplete === 'function') onComplete();
           }
         } else {
@@ -675,7 +685,7 @@ function mostrarGameOver(text) {
   btn.textContent = 'Reiniciar';
   btn.onclick = () => {
     eliminarOverlay();
-    iniciarJuego(nivelActual); // reinicia mismo nivel
+    mostrarSeccion('inicio');
   };
   btn.style.marginLeft = '10px';
   box.appendChild(btn);
@@ -830,3 +840,138 @@ function iniciarMiniJuegoFrutas() {
 }
 
 window.iniciarMiniJuegoFrutas = iniciarMiniJuegoFrutas;
+
+// --- AUDIO SYSTEM (MP3) ---
+class AudioManager {
+  constructor() {
+    this.music = document.getElementById('bg-music');
+    if (this.music) this.music.loop = true;
+    this.isMusicMuted = false;
+    this.isSFXMuted = false;
+    this.sounds = {
+      click: new Audio('sonidos/click.mp3'),
+      acierto: new Audio('sonidos/acierto.mp3'),
+      error: new Audio('sonidos/error.mp3')
+    };
+  }
+
+  play(name) {
+    if (this.isSFXMuted) return;
+    const sound = this.sounds[name];
+    if (sound) {
+      sound.currentTime = 0;
+      sound.play().catch(() => { });
+    }
+  }
+
+  toggleMusic() {
+    this.isMusicMuted = !this.isMusicMuted;
+    if (this.isMusicMuted) {
+      if (this.music) this.music.pause();
+    } else {
+      if (this.music) this.music.play().catch(() => { });
+    }
+    return this.isMusicMuted;
+  }
+
+  toggleSFX() {
+    this.isSFXMuted = !this.isSFXMuted;
+    return this.isSFXMuted;
+  }
+
+  startMusic() {
+    if (!this.isMusicMuted && this.music) {
+      this.music.volume = 0.3;
+      this.music.play().catch(() => { });
+    }
+  }
+}
+
+const audio = new AudioManager();
+
+function toggleMusic() {
+  const muted = audio.toggleMusic();
+  const btn = document.getElementById('music-toggle');
+  if (btn) {
+    btn.textContent = muted ? '🔇' : '🎵';
+    btn.classList.toggle('muted', muted);
+    btn.title = muted ? 'Música Off' : 'Música On';
+  }
+}
+
+function toggleSFX() {
+  const muted = audio.toggleSFX();
+  const btn = document.getElementById('sfx-toggle');
+  if (btn) {
+    btn.textContent = muted ? '🔇' : '🔊';
+    btn.classList.toggle('muted', muted);
+    btn.title = muted ? 'Efectos Off' : 'Efectos On';
+  }
+}
+
+window.toggleMusic = toggleMusic;
+window.toggleSFX = toggleSFX;
+
+// --- PARTICLE SYSTEM (CONFETTI) ---
+function lanzarConfeti() {
+  const colors = ['#8387C3', '#b3b7ff', '#F8F9FA', '#C71585', '#00CED1'];
+  const particleCount = 100;
+
+  for (let i = 0; i < particleCount; i++) {
+    const p = document.createElement('div');
+    p.className = 'confetti-particle';
+    p.style.position = 'fixed';
+    p.style.width = Math.random() * 8 + 4 + 'px';
+    p.style.height = p.style.width;
+    p.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    p.style.left = '50%';
+    p.style.top = '50%';
+    p.style.zIndex = '9999';
+    p.style.borderRadius = '2px';
+    p.style.pointerEvents = 'none';
+    document.body.appendChild(p);
+
+    const angle = Math.random() * Math.PI * 2;
+    const velocity = Math.random() * 200 + 100;
+    const destinationX = Math.cos(angle) * velocity * (Math.random() * 2 + 1);
+    const destinationY = Math.sin(angle) * velocity * (Math.random() * 2 + 1) + 200;
+
+    const animation = p.animate([
+      { transform: 'translate(-50%, -50%) scale(1) rotate(0deg)', opacity: 1 },
+      { transform: `translate(calc(-50% + ${destinationX}px), calc(-50% + ${destinationY}px)) scale(0) rotate(${Math.random() * 720}deg)`, opacity: 0 }
+    ], {
+      duration: Math.random() * 1500 + 1000,
+      easing: 'cubic-bezier(0.1, 0.8, 0.3, 1)',
+      fill: 'forwards'
+    });
+
+    animation.onfinish = () => p.remove();
+  }
+}
+window.lanzarConfeti = lanzarConfeti;
+
+// --- AUTOPLAY & GLOBAL SOUND LISTENER ---
+// Inicia la música en la primera interacción (mousedown, keydown, touchstart)
+// para que se sienta instantáneo y cumpla con las políticas del navegador.
+const iniciarMusica = () => {
+  if (typeof audio !== 'undefined') {
+    audio.startMusic();
+    // Una vez iniciada, removemos estos listeners específicos para la música
+    window.removeEventListener('mousedown', iniciarMusica);
+    window.removeEventListener('keydown', iniciarMusica);
+    window.removeEventListener('touchstart', iniciarMusica);
+  }
+};
+
+// Listeners de interacción inicial
+window.addEventListener('mousedown', iniciarMusica);
+window.addEventListener('keydown', iniciarMusica);
+window.addEventListener('touchstart', iniciarMusica);
+
+// Listener global para sonidos de clic en elementos interactivos
+document.addEventListener('click', (e) => {
+  const target = e.target.closest('button, .card, .overlay-icon-btn, .audio-btn, .draggable-item, .preview-symbol, [onclick]');
+  if (target && typeof audio !== 'undefined') {
+    audio.play('click');
+  }
+}, true);
