@@ -5,24 +5,44 @@
   <meta charset="UTF-8">
   <title>Memory Game Moderno</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body>
-  <div id="particles-bg"></div>
+  <div id="parallax-scene">
+    <div id="particles-bg"></div>
+  </div>
 
 
 
   <section id="inicio" class="active">
-    <h1>Memory Game</h1>
+    <h1 class="main-title">Memory Game</h1>
     <div class="start-options">
+      <!-- Selección de Avatar (Carrusel Neón) -->
+      <div class="option-label" style="margin-top: 10px;">SELECCIONA TU AVATAR</div>
+      <div class="avatar-row">
+        <div class="avatar-item active" onclick="setAvatar('fa-user-astronaut', this)" title="Astronauta">
+          <i class="fas fa-user-astronaut"></i>
+        </div>
+        <div class="avatar-item" onclick="setAvatar('fa-robot', this)" title="Robot">
+          <i class="fas fa-robot"></i>
+        </div>
+        <div class="avatar-item" onclick="setAvatar('fa-bolt', this)" title="Rayo">
+          <i class="fas fa-bolt"></i>
+        </div>
+        <div class="avatar-item" onclick="setAvatar('fa-gamepad', this)" title="Gamepad">
+          <i class="fas fa-gamepad"></i>
+        </div>
+      </div>
+
       <div class="option-label">TAMAÑO DE TABLERO</div>
-      <div class="size-buttons">
+      <div class="size-buttons selection-box">
         <button id="size-small" data-size="2" onclick="setBoardSize(2)">PEQUEÑO</button>
         <button id="size-medium" data-size="4" onclick="setBoardSize(4)">MEDIANO</button>
         <button id="size-large" data-size="6" onclick="setBoardSize(6)">GRANDE</button>
       </div>
       <div class="option-label">TEMA DE CARTAS</div>
-      <div class="theme-buttons">
+      <div class="theme-buttons selection-box">
         <button id="theme-tradicional" data-theme="tradicional" onclick="setTheme('tradicional')">TRADICIONAL</button>
         <button id="theme-frutas" data-theme="frutas" onclick="setTheme('frutas')">FRUTAS</button>
         <button id="theme-animales" data-theme="animales" onclick="setTheme('animales')">ANIMALES</button>
@@ -31,21 +51,29 @@
 
       <!-- Opción para Otro Juego -->
       <div class="option-label" style="margin-top: 30px;">SIGUIENTE JUEGO</div>
-      <div style="cursor: pointer; display: inline-block; transition: transform 0.3s;"
+      <div style="cursor: pointer; display: inline-block; transition: transform 0.3s; margin-bottom: 20px;"
         onclick="iniciarMiniJuegoFrutas()" onmouseover="this.style.transform='scale(1.1)'"
         onmouseout="this.style.transform='scale(1)'">
         <span style="font-size: 50px; filter: drop-shadow(0 0 10px rgba(255,255,255,0.4));">🍌</span>
       </div>
+
+      <div class="start-btn-container">
+        <button class="btn-empezar" onclick="mostrarSeccion('juego'); iniciarJuego();">EMPEZAR</button>
+      </div>
     </div>
-    <button onclick="mostrarSeccion('juego'); iniciarJuego();">EMPEZAR</button>
-    <!-- eliminado temporal botón adicional; ahora se ubica dentro del tablero -->
   </section>
 
   <section id="juego">
     <h2 id="nivelTitulo" class="cyber-title" style="margin-top: 20px;">NIVEL 1</h2>
 
     <div class="scoreboard cyber-hud">
-      <span class="hud-label">Movimientos:</span> <span id="movimientos" class="hud-value">0</span>
+      <div class="hud-item">
+        <span class="hud-label">MOVIMIENTOS:</span>
+        <div class="energy-bar-container">
+          <div id="energy-fill" class="energy-fill"></div>
+          <span id="movimientos" class="energy-text">0 / 0</span>
+        </div>
+      </div>
     </div>
 
     <div id="tablero" class="grid"></div>
@@ -59,8 +87,14 @@
 
 
   <div class="audio-controls-container">
-    <button id="music-toggle" class="audio-btn" onclick="toggleMusic()" title="Música On/Off">🎵</button>
-    <button id="sfx-toggle" class="audio-btn" onclick="toggleSFX()" title="Efectos On/Off">🔊</button>
+    <div class="audio-control-item">
+      <span class="audio-label">MÚSICA</span>
+      <button id="music-toggle" class="audio-btn" onclick="toggleMusic()" title="Música On/Off">🎵</button>
+    </div>
+    <div class="audio-control-item">
+      <span class="audio-label">EFECTOS</span>
+      <button id="sfx-toggle" class="audio-btn" onclick="toggleSFX()" title="Efectos On/Off">🔊</button>
+    </div>
   </div>
 
   <audio id="bg-music" loop>
