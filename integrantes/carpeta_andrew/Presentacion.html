@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andrew Lara | Perfil Profesional</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Navbar */
+nav {
+    position: fixed;
+    width: 100%;
+    padding: 15px 30px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    z-index: 1000;
+}
+
+nav h1 {
+    font-size: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 15px;
+}
+
+/* Hero */
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.hero h2 {
+    font-size: 3rem;
+}
+
+.hero span {
+    color: #00eaff;
+}
+
+/* Card */
+.card {
+    background: rgba(255,255,255,0.05);
+    padding: 25px;
+    margin: 20px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Sections */
+section {
+    padding: 80px 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+/* Skills */
+.skills span {
+    display: inline-block;
+    background: #00eaff;
+    color: black;
+    padding: 8px 12px;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    opacity: 0.6;
+}
+
+/* Easter egg */
+#secret {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #00eaff;
+    color: black;
+    padding: 15px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <h1>Andrew Lara</h1>
+    <div>
+        <a href="#about">Sobre mí</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Proyectos</a>
+    </div>
+</nav>
+
+<div class="hero">
+    <h2>Hola, soy <span>Andrew Lara</span></h2>
+    <p>Estudiante de Software & Futuro Ingeniero 🚀</p>
+</div>
+
+<section id="about">
+    <div class="card">
+        <h2>👨‍💻 Perfil</h2>
+        <p>
+            Soy estudiante de desarrollo de software con enfoque en backend, bases de datos 
+            y desarrollo de aplicaciones. Me apasiona crear soluciones eficientes, 
+            sistemas escalables y proyectos innovadores.
+        </p>
+    </div>
+</section>
+
+<section id="skills">
+    <div class="card">
+        <h2>⚡ Habilidades</h2>
+        <div class="skills">
+            <span>Java</span>
+            <span>SQL</span>
+            <span>Git</span>
+            <span>.NET</span>
+            <span>HTML/CSS</span>
+            <span>React</span>
+        </div>
+    </div>
+</section>
+
+<section id="projects">
+    <div class="card">
+        <h2>📂 Proyectos</h2>
+        <p>
+            Puedes ver todos mis proyectos en mi GitHub:
+        </p>
+        <br>
+        <a href="https://github.com/alara05" target="_blank" style="color:#00eaff;">
+            👉 Ver GitHub
+        </a>
+    </div>
+</section>
+
+<footer>
+    © 2026 Andrew Lara | Perfil Profesional
+</footer>
+
+<div id="secret">🎉 Easter Egg Activado: ¡Eres un crack!</div>
+
+<script>
+// Easter Egg secreto: escribir "lara"
+let keys = "";
+
+document.addEventListener("keydown", (e) => {
+    keys += e.key.toLowerCase();
+
+    if (keys.includes("lara")) {
+        document.getElementById("secret").style.display = "block";
+    }
+
+    if (keys.length > 10) {
+        keys = "";
+    }
+});
+</script>
+
+</body>
+</html>
