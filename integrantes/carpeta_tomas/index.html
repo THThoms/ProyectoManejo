@@ -4,51 +4,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arcade LAN de Tomas</title>
+    <title>Tomas Solis | Arcade Terminal</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+
+    <div class="efecto-crt"></div>
+
     <header>
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h1>> SISTEMA_ARCADE_TOMAS.EXE</h1>
-            <a href="../../index.html"
-                style="color: #00ff00; text-decoration: none; border: 1px solid #00ff00; padding: 5px 10px; font-family: monospace;">>
-                VOLVER_A_BASE.EXE</a>
+        <div class="header-top">
+            <h1>&gt; SISTEMA_ARCADE_TOMAS.EXE</h1>
+            <a href="../../index.html" class="btn-volver">&gt; VOLVER_A_BASE.EXE</a>
         </div>
-        <h2>>Uso y creación de prompts de Inteligencia Artificial.
-            <p>Iniciando servidor LAN... [OK]</p>
+        <p class="subtitulo">&gt; Iniciando servidor LAN... [OK]</p>
     </header>
 
     <main>
+
+        <!-- ===== SECCIÓN DE PERFIL ===== -->
+        <section class="perfil">
+            <div class="perfil-avatar">
+                <div class="avatar-box">
+                    <span class="avatar-icon">[T.S]</span>
+                    <div class="avatar-borde"></div>
+                </div>
+            </div>
+            <div class="perfil-info">
+                <div class="perfil-linea">
+                    <span class="etiqueta">USUARIO........:</span>
+                    <span class="valor" id="txt-nombre">Tomas Solis</span>
+                </div>
+                <div class="perfil-linea">
+                    <span class="etiqueta">CARRERA........:</span>
+                    <span class="valor">Ingenieria en Software</span>
+                </div>
+                <div class="perfil-linea">
+                    <span class="etiqueta">FACULTAD.......:​</span>
+                    <span class="valor">FISEI - UTA</span>
+                </div>
+                <div class="perfil-linea">
+                    <span class="etiqueta">SKILLS.........:​</span>
+                    <span class="valor">Java &nbsp;|&nbsp; Bases de Datos &nbsp;|&nbsp; HTML &nbsp;|&nbsp; CSS &nbsp;|&nbsp; JS</span>
+                </div>
+                <div class="perfil-linea">
+                    <span class="etiqueta">INTERESES......:</span>
+                    <span class="valor">Backend &nbsp;|&nbsp; Deporte &nbsp;|&nbsp; Videojuegos</span>
+                </div>
+                <div class="perfil-linea">
+                    <span class="etiqueta">EQUIPO.........:​</span>
+                    <span class="valor">Nova Codice &lt;Desarrollador&gt;</span>
+                </div>
+                <div class="perfil-linea">
+                    <span class="etiqueta">STATUS.........:​</span>
+                    <span class="valor estado-online">[EN LINEA] <span class="cursor-parpadeo">█</span></span>
+                </div>
+            </div>
+        </section>
+
+        <div class="separador">&gt;&gt;&gt; MODULO_JUEGOS.EXE &lt;&lt;&lt;</div>
+
+        <!-- ===== SECCIÓN DE JUEGOS ===== -->
         <div class="contenedor-juegos">
 
             <div class="tarjeta-juego">
                 <div class="imagen-juego">[K.O]</div>
                 <h2>Stickman Fighter</h2>
-                <p>Simulador de combate con físicas ragdoll y IA agresiva.</p>
-                <button class="btn-jugar" id="btn-stickman">EJECUTAR</button>
+                <p>Simulador de combate con físicas ragdoll e IA agresiva.</p>
+                <button class="btn-jugar" id="btn-stickman">[ EJECUTAR ]</button>
             </div>
 
             <div class="tarjeta-juego">
-                <div class="imagen-juego">[>_<]< /div>
-                        <h2>Acumula Puntos</h2>
-                        <p>REFLEX ZONE, un juego de reflejos arcade con estética neón oscura</p>
-                        <button class="btn-jugar" id="btn-hack">EJECUTAR</button>
-                </div>
-
-                <div class="tarjeta-juego">
-                    <div class="imagen-juego">[X/O]</div>
-                    <h2>Conquista Mazmorras</h2>
-                    <p> Estrategia de combate en mazmorras con múltiples niveles.</p>
-                    <button class="btn-jugar" id="btn-tres-en-raya">EJECUTAR</button>
-                </div>
-
-
+                <div class="imagen-juego">[&gt;_&lt;]</div>
+                <h2>Acumula Puntos</h2>
+                <p>REFLEX ZONE — juego de reflejos arcade con estética neón oscura.</p>
+                <button class="btn-jugar" id="btn-hack">[ EJECUTAR ]</button>
             </div>
+
+            <div class="tarjeta-juego">
+                <div class="imagen-juego">[X/O]</div>
+                <h2>Conquista Mazmorras</h2>
+                <p>Estrategia de combate en mazmorras con múltiples niveles.</p>
+                <button class="btn-jugar" id="btn-tres-en-raya">[ EJECUTAR ]</button>
+            </div>
+
+        </div>
+
     </main>
 
-    <div class="efecto-crt"></div>
+    <footer>
+        <p>&gt; Nova_Codice © 2025 | FISEI - UTA | Tomas Solis &lt;/fin_de_sesion&gt;</p>
+    </footer>
 
     <script src="main.js"></script>
 </body>
