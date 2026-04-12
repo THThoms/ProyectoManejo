@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/backend/">
+    <Project Path="backend/IslandGame.Backend.csproj" />
+  </Folder>
+  <Folder Name="/tools/" />
+  <Folder Name="/tools/HostLauncher/">
+    <Project Path="tools/HostLauncher/IslandGame.HostLauncher.csproj" />
+  </Folder>
+</Solution>
