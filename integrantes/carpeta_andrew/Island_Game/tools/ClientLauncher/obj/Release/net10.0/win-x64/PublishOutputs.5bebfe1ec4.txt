@@ -1,0 +1,2 @@
+C:\Users\HOME\Desktop\Island_Game\dist\Client\IslandGame.ClientLauncher.pdb
+C:\Users\HOME\Desktop\Island_Game\dist\Client\IslandGame.ClientLauncher.exe

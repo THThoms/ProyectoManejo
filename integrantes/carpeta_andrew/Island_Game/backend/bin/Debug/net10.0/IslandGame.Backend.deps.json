@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "IslandGame.Backend/1.0.0": {
+        "runtime": {
+          "IslandGame.Backend.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "IslandGame.Backend/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
