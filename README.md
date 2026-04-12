@@ -47,6 +47,7 @@ Proyecto manejo/
 │   ├── carpeta_gaby/
 │   ├── carpeta_david/
 │   ├── carpeta_juan/
+│   ├── carpeta_andrew/
 │   ├── carpeta_sebas/
 │   └── carpeta_tomas/
 ├── README.md               # Este archivo
@@ -76,6 +77,7 @@ hotfix/*    ← Correcciones urgentes sobre main
 | Gaby | Encargada de Diseño |
 | David | Desarrollador |
 | Juan | Desarrollador |
+| Andrew | Desarrollador |
 | Sebas | Desarrollador |
 | Tomás | Desarrollador |
 
