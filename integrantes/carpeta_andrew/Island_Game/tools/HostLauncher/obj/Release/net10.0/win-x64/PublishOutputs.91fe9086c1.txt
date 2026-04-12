@@ -1,0 +1,2 @@
+C:\Users\HOME\Desktop\Island_Game\dist\Host\IslandGame.HostLauncher.pdb
+C:\Users\HOME\Desktop\Island_Game\dist\Host\IslandGame.HostLauncher.exe

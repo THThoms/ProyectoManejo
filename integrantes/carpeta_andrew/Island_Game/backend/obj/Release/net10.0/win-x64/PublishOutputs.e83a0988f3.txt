@@ -1,0 +1,7 @@
+C:\Users\HOME\Desktop\Island_Game\dist\Host\server\IslandGame.Backend.exe
+C:\Users\HOME\Desktop\Island_Game\dist\Host\server\appsettings.Development.json
+C:\Users\HOME\Desktop\Island_Game\dist\Host\server\appsettings.json
+C:\Users\HOME\Desktop\Island_Game\dist\Host\server\IslandGame.Backend.dll
+C:\Users\HOME\Desktop\Island_Game\dist\Host\server\IslandGame.Backend.deps.json
+C:\Users\HOME\Desktop\Island_Game\dist\Host\server\IslandGame.Backend.runtimeconfig.json
+C:\Users\HOME\Desktop\Island_Game\dist\Host\server\IslandGame.Backend.pdb
