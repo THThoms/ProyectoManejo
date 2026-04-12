@@ -30,7 +30,7 @@
       <div id="theme-preview" class="theme-preview"></div>
 
       <!-- Opción para Otro Juego -->
-      <div class="option-label" style="margin-top: 30px;">OTRO JUEGO</div>
+      <div class="option-label" style="margin-top: 30px;">SIGUIENTE JUEGO</div>
       <div style="cursor: pointer; display: inline-block; transition: transform 0.3s;"
         onclick="iniciarMiniJuegoFrutas()" onmouseover="this.style.transform='scale(1.1)'"
         onmouseout="this.style.transform='scale(1)'">
@@ -56,6 +56,16 @@
       <button class="home-btn" onclick="mostrarSeccion('inicio')" title="Volver al inicio">🏠</button>
     </div>
   </section>
+
+
+  <div class="audio-controls-container">
+    <button id="music-toggle" class="audio-btn" onclick="toggleMusic()" title="Música On/Off">🎵</button>
+    <button id="sfx-toggle" class="audio-btn" onclick="toggleSFX()" title="Efectos On/Off">🔊</button>
+  </div>
+
+  <audio id="bg-music" loop>
+    <source src="sonidos/musica.mp3" type="audio/mpeg">
+  </audio>
 
   <script src="script.js"></script>
 </body>
