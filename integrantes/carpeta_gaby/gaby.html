@@ -5,24 +5,44 @@
   <meta charset="UTF-8">
   <title>Memory Game Moderno</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body>
-  <div id="particles-bg"></div>
+  <div id="parallax-scene">
+    <div id="particles-bg"></div>
+  </div>
 
 
 
   <section id="inicio" class="active">
     <h1 class="main-title">Memory Game</h1>
     <div class="start-options">
+      <!-- Selección de Avatar (Carrusel Neón) -->
+      <div class="option-label" style="margin-top: 10px;">SELECCIONA TU AVATAR</div>
+      <div class="avatar-row">
+        <div class="avatar-item active" onclick="setAvatar('fa-user-astronaut', this)" title="Astronauta">
+          <i class="fas fa-user-astronaut"></i>
+        </div>
+        <div class="avatar-item" onclick="setAvatar('fa-robot', this)" title="Robot">
+          <i class="fas fa-robot"></i>
+        </div>
+        <div class="avatar-item" onclick="setAvatar('fa-bolt', this)" title="Rayo">
+          <i class="fas fa-bolt"></i>
+        </div>
+        <div class="avatar-item" onclick="setAvatar('fa-gamepad', this)" title="Gamepad">
+          <i class="fas fa-gamepad"></i>
+        </div>
+      </div>
+
       <div class="option-label">TAMAÑO DE TABLERO</div>
-      <div class="size-buttons">
+      <div class="size-buttons selection-box">
         <button id="size-small" data-size="2" onclick="setBoardSize(2)">PEQUEÑO</button>
         <button id="size-medium" data-size="4" onclick="setBoardSize(4)">MEDIANO</button>
         <button id="size-large" data-size="6" onclick="setBoardSize(6)">GRANDE</button>
       </div>
       <div class="option-label">TEMA DE CARTAS</div>
-      <div class="theme-buttons">
+      <div class="theme-buttons selection-box">
         <button id="theme-tradicional" data-theme="tradicional" onclick="setTheme('tradicional')">TRADICIONAL</button>
         <button id="theme-frutas" data-theme="frutas" onclick="setTheme('frutas')">FRUTAS</button>
         <button id="theme-animales" data-theme="animales" onclick="setTheme('animales')">ANIMALES</button>

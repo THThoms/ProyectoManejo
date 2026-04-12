@@ -42,15 +42,26 @@ body::before {
   pointer-events: none;
 }
 
-/* Floating Particles/Stars */
-#particles-bg {
+/* Parallax Scene Container */
+#parallax-scene {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  top: -10vh;
+  left: -10vw;
+  width: 120vw;
+  height: 120vh;
   z-index: -1;
   pointer-events: none;
+  will-change: transform;
+  transition: transform 0.1s ease-out; /* Smooth follow-through */
+}
+
+/* Floating Particles/Stars */
+#particles-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-image:
     radial-gradient(1px 1px at 20px 30px, var(--accent-bright), rgba(0, 0, 0, 0)),
     radial-gradient(1.5px 1.5px at 150px 150px, var(--accent-bright), rgba(0, 0, 0, 0)),
@@ -261,16 +272,66 @@ h1.main-title {
   text-shadow: 0 0 4px rgba(138, 140, 172, 0.5);
 }
 
-/* Inner containers for options */
-.start-options>div:nth-child(2),
-.start-options>div:nth-child(4) {
+/* AVATAR SELECTION (Diseño Grande estilo Imagen) */
+.avatar-row {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 40px;
+  margin-top: 10px;
+}
+
+.avatar-item {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(131, 135, 195, 0.3);
+  border-radius: 12px;
+  background: rgba(10, 17, 35, 0.5);
+  backdrop-filter: blur(8px);
+  color: var(--cadet-grey);
+  font-size: 45px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+.avatar-item:hover {
+  transform: scale(1.1);
+  color: var(--text-white);
+  border-color: var(--accent-bright);
+  box-shadow: 0 0 20px var(--neon-glow);
+}
+
+.avatar-item.active {
+  color: #fff;
+  border-color: #00d2ff;
+  background: rgba(0, 210, 255, 0.15);
+  box-shadow: 
+    0 0 30px rgba(0, 210, 255, 0.6), 
+    inset 0 0 15px rgba(0, 210, 255, 0.4);
+  text-shadow: 0 0 15px #fff;
+}
+
+/* Contenedores de opciones (Cajon horizontal) */
+.selection-box {
   background: rgba(131, 135, 195, 0.05);
   border: 1px solid rgba(131, 135, 195, 0.3);
   padding: 15px;
   border-radius: 8px;
-  display: inline-block;
+  display: flex !important;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-  margin-bottom: 10px;
+  margin: 0 auto 15px auto;
+  width: fit-content;
+  max-width: 90%;
 }
 
 .size-buttons button,
@@ -602,6 +663,26 @@ h2.cyber-title {
   transform: rotateY(180deg);
   border: 1px solid var(--accent-bright);
   box-shadow: inset 0 0 25px rgba(131, 135, 195, 0.4), 0 10px 25px var(--accent-bright);
+}
+
+/* ERROR FLASH FEEDBACK */
+.card.error-flash .back {
+  animation: error-neon-flash 0.4s ease-in-out 2;
+}
+
+@keyframes error-neon-flash {
+  0% {
+    border-color: var(--accent-bright);
+    box-shadow: inset 0 0 25px rgba(131, 135, 195, 0.4), 0 10px 25px var(--accent-bright);
+  }
+  50% {
+    border-color: #ff0033;
+    box-shadow: 0 0 30px #ff0033, inset 0 0 20px #ff0033;
+  }
+  100% {
+    border-color: var(--accent-bright);
+    box-shadow: inset 0 0 25px rgba(131, 135, 195, 0.4), 0 10px 25px var(--accent-bright);
+  }
 }
 
 .victory {
