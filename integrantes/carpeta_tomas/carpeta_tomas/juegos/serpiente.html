@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serpiente Terminal</title>
+    <link rel="stylesheet" href="serpiente.css">
+</head>
+<body>
+    <div class="efecto-crt"></div>
+
+    <header>
+        <h1>&gt; SERPIENTE_TERMINAL.EXE</h1>
+        <a href="../index.html" class="btn-volver">&gt; VOLVER_AL_MENU.EXE</a>
+    </header>
+
+    <main>
+        <div class="panel-info">
+            <span>PUNTOS: <span id="score">0</span></span>
+            <span>NIVEL: <span id="nivel">1</span></span>
+            <span>RECORD: <span id="record">0</span></span>
+        </div>
+
+        <div class="canvas-wrapper">
+            <canvas id="canvas" width="400" height="400"></canvas>
+            <div class="overlay" id="overlay">
+                <p id="overlay-title">&gt; SERPIENTE_TERMINAL.EXE</p>
+                <p id="overlay-msg">Presiona ENTER o ESPACIO para iniciar</p>
+                <p class="hint">[ W A S D ] o flechas para moverse</p>
+            </div>
+        </div>
+
+        <div class="controles">
+            <button class="btn-ctrl" id="btn-iniciar">[ INICIAR ]</button>
+            <button class="btn-ctrl" id="btn-pausar" disabled>[ PAUSAR ]</button>
+            <button class="btn-ctrl" id="btn-reiniciar" disabled>[ REINICIAR ]</button>
+        </div>
+
+        <div class="instrucciones">
+            <p>&gt; INSTRUCCIONES: Come la fruta [■] para crecer y ganar puntos.</p>
+            <p>&gt; Cada 5 puntos sube el nivel y la velocidad aumenta.</p>
+            <p>&gt; No choques con las paredes ni contigo mismo.</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&gt; Nova_Codice © 2025 | FISEI - UTA | Tomas Solis</p>
+    </footer>
+
+    <script src="serpiente.js"></script>
+</body>
+</html>

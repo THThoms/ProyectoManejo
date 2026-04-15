@@ -15,3 +15,8 @@ btnHack.addEventListener('click', () => {
 btnTresEnRaya.addEventListener('click', () => {
     window.location.href = 'juegos/tres_en_raya.html';
 });
+
+const btnSerpiente = document.getElementById('btn-serpiente');
+btnSerpiente.addEventListener('click', () => {
+    window.location.href = 'juegos/serpiente.html';
+});
