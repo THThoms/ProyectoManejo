@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perfil Profesional</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #f8fafc;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      background: rgba(15, 23, 42, 0.92);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      display: grid;
+      grid-template-columns: 320px 1fr;
+    }
+
+    .sidebar {
+      background: linear-gradient(180deg, #1d4ed8, #1e40af);
+      padding: 35px 25px;
+      text-align: center;
+    }
+
+    .foto {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 6px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+      margin-bottom: 20px;
+    }
+
+    .sidebar h1 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .sidebar h2 {
+      font-size: 16px;
+      font-weight: normal;
+      opacity: 0.95;
+      margin-bottom: 25px;
+    }
+
+    .contacto {
+      text-align: left;
+      margin-top: 25px;
+      background: rgba(255, 255, 255, 0.12);
+      padding: 18px;
+      border-radius: 14px;
+    }
+
+    .contacto h3,
+    .social h3 {
+      margin-bottom: 12px;
+      font-size: 18px;
+    }
+
+    .contacto p,
+    .social p {
+      margin-bottom: 10px;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .main {
+      padding: 40px;
+    }
+
+    section {
+      margin-bottom: 28px;
+    }
+
+    section h3 {
+      color: #60a5fa;
+      margin-bottom: 12px;
+      font-size: 22px;
+      border-bottom: 2px solid rgba(96, 165, 250, 0.3);
+      padding-bottom: 8px;
+    }
+
+    section p,
+    li {
+      color: #e2e8f0;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    .habilidades {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .tag {
+      background: #1e40af;
+      color: white;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 14px;
+    }
+
+    .card h4 {
+      margin-bottom: 8px;
+      color: #ffffff;
+      font-size: 17px;
+    }
+
+    .card span {
+      display: block;
+      color: #93c5fd;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    a {
+      color: #bfdbfe;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 900px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar, .main {
+        padding: 28px;
+      }
+
+      .foto {
+        width: 180px;
+        height: 180px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <img src="FotoPerfil.png" alt="Foto de perfil" class="foto">
+      <h1>Sebastián Vaca</h1>
+      <h2>Estudiante de Desarrollo de Software</h2>
+
+      <div class="contacto">
+        <h3>Contacto</h3>
+        <p><strong>Correo:</strong> fvaca6340@uta.edu.ec</p>
+        <p><strong>Teléfono:</strong> +593 000 000 000</p>
+        <p><strong>Ubicación:</strong> Ecuador</p>
+      </div>
+
+      <div class="contacto social">
+        <h3>Redes</h3>
+        <p><strong>GitHub:</strong> <a href="#">github.com/Sebas2g</a></p>
+        <p><strong>LinkedIn:</strong> <a href="#">linkedin.com/in/tuusuario</a></p>
+      </div>
+    </aside>
+
+    <main class="main">
+      <section>
+        <h3>Perfil Profesional</h3>
+        <p>
+          Soy Sebastián Vaca, estudiante de Desarrollo de Software con interés en la creación de aplicaciones,
+          interfaces web y soluciones tecnológicas orientadas a mejorar procesos. Me caracterizo por ser una persona
+          proactiva, creativa y con disposición para aprender nuevas herramientas y metodologías de desarrollo.
+        </p>
+      </section>
+
+      <section>
+        <h3>Habilidades</h3>
+        <div class="habilidades">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Java</span>
+          <span class="tag">Git y GitHub</span>
+          <span class="tag">Bases de Datos</span>
+          <span class="tag">SQL Server</span>
+          <span class="tag">Oracle</span>
+          <span class="tag">Trabajo en equipo</span>
+          <span class="tag">Resolución de problemas</span>
+        </div>
+      </section>
+
+      <section>
+        <h3>Formación Académica</h3>
+        <div class="card">
+          <h4>Desarrollo de Software</h4>
+          <span>Formación actual</span>
+          <p>
+            Estudios enfocados en programación, bases de datos, diseño de sistemas, desarrollo web
+            y buenas prácticas de implementación de software.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h3>Experiencia y Proyectos</h3>
+        <div class="card">
+          <h4>Proyectos académicos y personales</h4>
+          <span>Desarrollo web y escritorio</span>
+          <p>
+            Participación en el desarrollo de sistemas orientados a inventarios, facturación, interfaces gráficas,
+            modelado de bases de datos y prácticas con control de versiones mediante Git y GitHub.
+          </p>
+        </div>
+
+        <div class="card">
+          <h4>Gestión de bases de datos</h4>
+          <span>Modelado y consultas</span>
+          <p>
+            Diseño e implementación de estructuras de bases de datos relacionales, creación de tablas,
+            relaciones, claves primarias y foráneas, además de consultas SQL para distintos proyectos.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h3>Objetivo Profesional</h3>
+        <p>
+          Mi objetivo es seguir fortaleciendo mis conocimientos en el área del desarrollo de software,
+          participar en proyectos innovadores y adquirir experiencia profesional que me permita aportar
+          soluciones útiles, funcionales y bien estructuradas.
+        </p>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
