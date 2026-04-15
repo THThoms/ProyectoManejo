@@ -11,12 +11,47 @@ let maxMovimientos = 0;
 let parejasEncontradas = 0;
 // guarda la última configuración colocada en el tablero
 let ultimaConfiguracion = [];
+let nivelMemoria = 0; // nivel global para el mini-juego interactivo
+let selectedAvatar = 'fa-user-astronaut'; // avatar por defecto
+
+// cambia el avatar seleccionado en el menú principal
+function setAvatar(avatarClass, el) {
+  selectedAvatar = avatarClass;
+  // quitar clase active de todos los items
+  document.querySelectorAll('.avatar-item').forEach(item => item.classList.remove('active'));
+  // añadir clase active al seleccionado
+  el.classList.add('active');
+  audio.play('click');
+}
 
 function obtenerMaxMovimientos(size) {
   if (size === 2) return 8;
   if (size === 4) return 20;
   if (size === 6) return 30;
   return Infinity;
+}
+
+function actualizarHUD() {
+  const textEl = document.getElementById("movimientos");
+  const fillEl = document.getElementById("energy-fill");
+  if (!textEl || !fillEl) return;
+
+  textEl.textContent = `${movimientos} / ${maxMovimientos}`;
+  
+  const pct = Math.max(0, ((maxMovimientos - movimientos) / maxMovimientos) * 100);
+  fillEl.style.width = `${pct}%`;
+
+  // Cambiar clases según energía
+  fillEl.classList.remove('high', 'mid', 'low', 'critical');
+  if (pct > 50) {
+    fillEl.classList.add('high');
+  } else if (pct > 20) {
+    fillEl.classList.add('mid');
+  } else if (pct > 0) {
+    fillEl.classList.add('low');
+  } else {
+    fillEl.classList.add('critical');
+  }
 }
 
 // temática actual de las cartas
@@ -120,7 +155,7 @@ function iniciarJuego(index = 0) {
   movimientos = 0;
   parejasEncontradas = 0;
   maxMovimientos = obtenerMaxMovimientos(boardSize);
-  document.getElementById("movimientos").textContent = `${movimientos} / ${maxMovimientos}`;
+  actualizarHUD();
   const titulo = document.getElementById("nivelTitulo");
   if (titulo) titulo.textContent = `Nivel ${nivelActual + 1}`;
   document.getElementById("mensajeVictoria").textContent = "";
@@ -285,7 +320,7 @@ function voltearCarta(card, simbolo) {
   } else {
     segundaCarta = { card, simbolo };
     movimientos++;
-    document.getElementById("movimientos").textContent = `${movimientos} / ${maxMovimientos}`;
+    actualizarHUD();
     verificarPareja();
   }
 }
@@ -305,9 +340,14 @@ function verificarPareja() {
   } else {
     audio.play('error');
     bloqueado = true;
+    
+    // Añadir feedback visual de error
+    primeraCarta.card.classList.add('error-flash');
+    segundaCarta.card.classList.add('error-flash');
+
     setTimeout(() => {
-      primeraCarta.card.classList.remove("flip");
-      segundaCarta.card.classList.remove("flip");
+      primeraCarta.card.classList.remove("flip", "error-flash");
+      segundaCarta.card.classList.remove("flip", "error-flash");
       resetTurno();
       if (movimientos >= maxMovimientos) {
         mostrarGameOver('¡Te quedaste sin movimientos!');
@@ -321,6 +361,7 @@ function resetTurno() {
 }
 
 function mostrarVictoria() {
+  eliminarOverlay();
   audio.play('acierto');
   lanzarConfeti();
   const tieneProximoNivel = nivelActual < maxLevelsPerSize - 1;
@@ -328,11 +369,27 @@ function mostrarVictoria() {
   box.className = 'message-box';
 
   if (!tieneProximoNivel) {
+    const avatarIcon = document.createElement('i');
+    avatarIcon.className = `fas ${selectedAvatar}`;
+    avatarIcon.style.fontSize = '40px';
+    avatarIcon.style.color = 'var(--accent-bright)';
+    avatarIcon.style.textShadow = '0 0 15px var(--accent-bright)';
+    avatarIcon.style.marginBottom = '15px';
+    box.appendChild(avatarIcon);
+
     const msg = document.createElement('div');
     msg.textContent = `🎉 ¡Nivel ${nivelActual + 1} completado en ${movimientos} movimientos!`;
     box.appendChild(msg);
   } else {
     // Título "Otro juego"
+    const avatarIcon = document.createElement('i');
+    avatarIcon.className = `fas ${selectedAvatar}`;
+    avatarIcon.style.fontSize = '30px';
+    avatarIcon.style.color = 'var(--text-white)';
+    avatarIcon.style.textShadow = '0 0 10px var(--accent-bright)';
+    avatarIcon.style.marginBottom = '10px';
+    box.appendChild(avatarIcon);
+
     const tituloOtroJuego = document.createElement('div');
     tituloOtroJuego.textContent = 'Siguiente juego';
     tituloOtroJuego.style.fontSize = '24px';
@@ -399,7 +456,7 @@ function irAlJuegoMemoria() {
   nivelMemoria = Math.min(nivelMemoria + 1, maxLevelsPerSize);
   movimientos = 0;
   parejasEncontradas = 0;
-  document.getElementById('movimientos').textContent = movimientos;
+  actualizarHUD();
 
   // si ya completamos todos los 9 niveles de memorizar
   if (nivelMemoria > maxLevelsPerSize) {
@@ -434,7 +491,6 @@ function irAlJuegoMemoria() {
 
 // inicia un único nivel (ronda) del mini-juego interactivo extra
 function irAlJuegoFrutasArrastre() {
-  nivelMemoria++;
   const nextSize = boardSize;
   const totalCells = nextSize * nextSize;
   let disponibles = mezclar([...new Set(seleccionarCartasPorTema())]);
@@ -511,7 +567,6 @@ function irAlJuegoFrutasArrastre() {
           mostrarSiguienteNivelOverlay();
         } else {
           // ya no hay más niveles drag; mostramos la victoria final
-          eliminarOverlay();
           mostrarVictoria();
         }
       }, () => {
@@ -525,8 +580,17 @@ function irAlJuegoFrutasArrastre() {
 
 // Muestra botón de PLAY para el siguiente nivel del mini juego
 function mostrarSiguienteNivelOverlay() {
+  eliminarOverlay();
   const box = document.createElement('div');
   box.className = 'message-box';
+
+  const avatarIcon = document.createElement('i');
+  avatarIcon.className = `fas ${selectedAvatar}`;
+  avatarIcon.style.fontSize = '40px';
+  avatarIcon.style.color = 'var(--accent-bright)';
+  avatarIcon.style.textShadow = '0 0 15px var(--accent-bright)';
+  avatarIcon.style.marginBottom = '10px';
+  box.appendChild(avatarIcon);
 
   const title = document.createElement('div');
   title.className = 'memoria-info';
@@ -676,6 +740,7 @@ function habilitarInteractividad(previewContainer, previewVals, size, onComplete
 
 // muestra un overlay de fin de juego con mensaje y opción de reiniciar
 function mostrarGameOver(text) {
+  eliminarOverlay();
   const box = document.createElement('div');
   box.className = 'message-box';
   const msg = document.createElement('div');
@@ -787,13 +852,23 @@ function mostrarNivelEspecial(durationMs, callback) {
 
 // elimina cualquier overlay de victoria existente
 function eliminarOverlay() {
-  const existing = document.querySelector('.overlay');
-  if (existing) existing.remove();
+  document.querySelectorAll('.overlay').forEach(ov => ov.remove());
 }
 
 // Exponer funciones a nivel global para los botones HTML
 window.mostrarSeccion = mostrarSeccion;
 window.iniciarJuego = iniciarJuego;
+
+// Efecto Parallax de Fondo
+window.addEventListener('mousemove', (e) => {
+  const scene = document.getElementById('parallax-scene');
+  if (!scene) return;
+
+  const moveX = (window.innerWidth / 2 - e.clientX) * 0.05;
+  const moveY = (window.innerHeight / 2 - e.clientY) * 0.05;
+
+  scene.style.transform = `translate(${moveX}px, ${moveY}px)`;
+});
 
 // funciones de configuración de inicio (tamaño y tema)
 function setBoardSize(size) {
